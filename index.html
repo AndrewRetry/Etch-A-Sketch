@@ -3,11 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch-A-Sketch | Game Webpage</title>
+    <title>Etch-A-Sketch | Draw Online!</title>
+    <style src="reset.css"></style>
     <style src="style.css"></style>
     <script src="main.js"></script>
 </head>
 <body>
-    
+    <div class="flex-container">
+        <div class="title">The Etch-A-Sketch Game</div>
+        <div class="content">
+            <div class="buttons">
+                <input type="color" id="colorPicker" value="#000000">
+                <button>Black</button>
+                <button>Eraser</button>
+                <button>Let There Be Color!</button>
+                <button>Reset Palette</button>
+            </div>
+            <div class="palette"></div>
+            <div>
+                <input type="range" min="2" max="100" value="16" id="gridSize">
+                <button>Set Size</button>
+            </div>
+        </div>
+        
+    </div>
+
 </body>
 </html>
