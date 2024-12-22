@@ -54,3 +54,28 @@ function createSquares() {
 };
 
 createSquares();
+
+// animation for erasing palette, sequentially square by square
+function erasePalette() {
+    const totalDuration = 2000 //in milliseconds
+    const squares = document.querySelectorAll(".squares") // [square-1, square-2, ...square-n]
+    const totalSquareCount = squares.length
+    
+    let currentIndex = 0;
+    let interval = totalDuration / totalSquareCount
+
+    const eraseInterval = setInterval(() => {
+        if (currentIndex < totalSquareCount) {
+            squares[currentIndex].style.backgroundColor = "white"; //erase color for each square
+            squareQuantitySlider.disabled = true
+            currentIndex++;
+        } else {
+            clearInterval(eraseInterval); //stop
+            squareQuantitySlider.disabled = false
+        }
+    }, interval);
+}
+
+// event handler for eraseBtn -> MAKE SURE RUN ONLY AFTER INITIAL SQUARES ARE CREATED
+const eraseBtn = document.querySelector("#resetBtn")
+eraseBtn.addEventListener("click", erasePalette)
