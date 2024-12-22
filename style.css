@@ -4,14 +4,18 @@
 }
 
 body {
-    background-color: black;
+    background-color: beige;
 }
 
 #palette {
-    /* display: flex; */
+    display: flex;
+    flex-wrap: wrap;
     margin: 100px auto;
-    /* background-color: aqua; */
+    background-color: white;
+    box-shadow: 10px 10px 20px black;
+    
 }
-.square {
-    border: 1px solid black;
+.squares {
+    border: 1px solid whitesmoke;
+    margin:auto
 }

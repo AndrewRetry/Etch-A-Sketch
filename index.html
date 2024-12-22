@@ -4,24 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-A-Sketch | Draw Online!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="Reset" href="reset.css">
+    
 </head>
 <body>
     <div class="flex-container">
         <div class="title">The Etch-A-Sketch Game</div>
         <div class="buttons">
             <input type="color" id="colorPicker" value="#000000">
-            <button>Black</button>
-            <button>Eraser</button>
-            <button>Let There Be Color!</button>
-            <button>Reset Palette</button>
+            <button id="eraserBtn">Eraser</button>
+            <button id="randomBtn">Let There Be Color!</button>
+            <button id="resetBtn">Reset Palette</button>
         </div>
     </div>
 
     <div id ="palette" class="container"></div>
-
-    
-    <!-- <style src="reset.css"></style> -->
-    <style src="style.css"></style>
+    <div>
+        <input type="range" max="80" min="4" id="squareQuantity" value="16">
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
