@@ -21,24 +21,25 @@ document.addEventListener("mouseup", () => {
     isDrawing = false;
 });
 
+// assign square to another background color
+function colorSquare(target) {
+    if (target.classList.contains("squares")) {
+        target.style.backgroundColor = colorPicked
+    }
+}
 // event delegation for coloring squares
 paletteArea.addEventListener("mouseover", (event) => {
     if (isDrawing && event.target.classList.contains("squares")) {
-        event.target.style.backgroundColor = colorPicked;
+        colorSquare(event.target)
     }
 });
 
-// changes background color of squares, trigerred w/ event handler
+// changes selected color according to colorPicker, trigerred w/ event handler
 let colorInput = document.querySelector("#colorPicker");
 let colorPicked = "black"
 colorInput.addEventListener("change", () => {
     colorPicked = colorInput.value;
 });
-
-function setBackgroundColor() {
-    this.style.backgroundColor = colorPicked
-};
-
 
 // Substract 2 to ensure no overflow
 function createSquares() {
@@ -56,7 +57,7 @@ function createSquares() {
 createSquares();
 
 // animation for erasing palette, sequentially square by square
-function erasePalette() {
+function resetPalette() {
     const totalDuration = 2000 //in milliseconds
     const squares = document.querySelectorAll(".squares") // [square-1, square-2, ...square-n]
     const totalSquareCount = squares.length
@@ -76,6 +77,13 @@ function erasePalette() {
     }, interval);
 }
 
-// event handler for eraseBtn -> MAKE SURE RUN ONLY AFTER INITIAL SQUARES ARE CREATED
-const eraseBtn = document.querySelector("#resetBtn")
-eraseBtn.addEventListener("click", erasePalette)
+// event handler for resetBtn -> MAKE SURE RUN ONLY AFTER INITIAL SQUARES ARE CREATED
+const resetBtn = document.querySelector("#resetBtn");
+resetBtn.addEventListener("click", resetPalette);
+
+// event handler for eraserBtn
+const eraserBtn = document.querySelector("#eraserBtn")
+eraserBtn.addEventListener("click", () =>{
+    colorPicked = "#ffffff"
+    colorInput.value = colorPicked
+});
