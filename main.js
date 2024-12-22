@@ -56,25 +56,12 @@ function createSquares() {
 
 createSquares();
 
-// animation for erasing palette, sequentially square by square
+// erases whole palette
 function resetPalette() {
-    const totalDuration = 2000 //in milliseconds
     const squares = document.querySelectorAll(".squares") // [square-1, square-2, ...square-n]
-    const totalSquareCount = squares.length
-    
-    let currentIndex = 0;
-    let interval = totalDuration / totalSquareCount
-
-    const eraseInterval = setInterval(() => {
-        if (currentIndex < totalSquareCount) {
-            squares[currentIndex].style.backgroundColor = "white"; //erase color for each square
-            squareQuantitySlider.disabled = true
-            currentIndex++;
-        } else {
-            clearInterval(eraseInterval); //stop
-            squareQuantitySlider.disabled = false
-        }
-    }, interval);
+    squares.forEach(square => {
+        square.style.backgroundColor = "white"
+    });
 }
 
 // event handler for resetBtn -> MAKE SURE RUN ONLY AFTER INITIAL SQUARES ARE CREATED
@@ -87,3 +74,26 @@ eraserBtn.addEventListener("click", () =>{
     colorPicked = "#ffffff"
     colorInput.value = colorPicked
 });
+
+//event handler for randomizeBtn
+const randomColorBtn = document.querySelector("#randomBtn")
+const colorDisplayRandom = document.querySelector(".bubble")
+const randomizeDigits = (min, max) => (min + Math.floor(Math.random() * (max - min + 1)));
+//initialize random rgb values
+randomColorBtn.addEventListener("click", ()=>{
+    function randomizeRGB() {
+        colorR = randomizeDigits(0,255)
+        colorG = randomizeDigits(0,255)
+        colorB = randomizeDigits(0,255)
+        valRGB = `rgb(${colorR}, ${colorG}, ${colorB})`
+        return valRGB
+    }
+    paletteArea.addEventListener("mouseover", (event) => {
+        if (isDrawing && event.target.classList.contains("squares")) {
+            colorPicked = randomizeRGB()
+            colorSquare(event.target)
+            colorDisplayRandom.style.backgroundColor = colorPicked
+        }
+    });
+});
+
