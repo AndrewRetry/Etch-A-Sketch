@@ -1,7 +1,10 @@
 let squaresPerSide = 16; //default value
-let squareQuantitySlider = document.querySelector("#squareQuantity");
+let squareQuantitySlider = document.querySelector("#slider");
 squareQuantitySlider.addEventListener("change", ()=> {
     squaresPerSide = squareQuantitySlider.value;
+    // slider display value
+    let sliderValueString = document.querySelector("#sliderValue")
+    sliderValueString.textContent = `Resolution : ${squaresPerSide} x ${squaresPerSide}`
     createSquares();
 });
 
@@ -79,8 +82,22 @@ eraserBtn.addEventListener("click", () =>{
 const randomColorBtn = document.querySelector("#randomBtn")
 const colorDisplayRandom = document.querySelector(".bubble")
 const randomizeDigits = (min, max) => (min + Math.floor(Math.random() * (max - min + 1)));
+
 //initialize random rgb values
+let isRandomized = false
 randomColorBtn.addEventListener("click", ()=>{
+    if (isRandomized === false) {
+        isRandomized = true
+        randomColorBtn.style.backgroundColor = "#0056b3"
+        eraserBtn.disable = true
+        colorInput.disable = true
+    } else {
+        isRandomized = false
+        randomColorBtn.style.backgroundColor = "gray"
+        eraserBtn.disable = false
+        colorInput.disable = false
+    }
+
     function randomizeRGB() {
         colorR = randomizeDigits(0,255)
         colorG = randomizeDigits(0,255)
@@ -89,11 +106,10 @@ randomColorBtn.addEventListener("click", ()=>{
         return valRGB
     }
     paletteArea.addEventListener("mouseover", (event) => {
-        if (isDrawing && event.target.classList.contains("squares")) {
+        if (isDrawing && isRandomized && event.target.classList.contains("squares")) {
             colorPicked = randomizeRGB()
             colorSquare(event.target)
             colorDisplayRandom.style.backgroundColor = colorPicked
         }
     });
 });
-

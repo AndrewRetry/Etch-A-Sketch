@@ -11,20 +11,25 @@
 <body>
     <div class="flex-container">
         <div class="title">The Etch-A-Sketch Game</div>
+        <div class="randomColorContainer">
+            <span class="bubble" id="randomColor"></span>
+            <p>Random Color Indicator</p>
+        </div>
         <div class="buttons">
             <input type="color" id="colorPicker" value="#000000">
             <button id="eraserBtn">Eraser</button>
             <button id="randomBtn">Let There Be Color!</button>
-            <span class="bubble" id="randomColor"></span>
             <button id="resetBtn">Reset Palette</button>
         </div>
     </div>
-
-    <div id ="palette" class="container"></div>
-    <div>
-        <input type="range" max="80" min="4" id="squareQuantity" value="16">
+    
+    <div id="palette" class="container"></div>
+    
+    <div id="sliderContainer">
+        <input type="range" max="80" min="4" id="slider" value="16">
+        <p id="sliderValue"></p>
     </div>
+    
     <script src="main.js"></script>
-    <script src="features/gradual-erase.js"></script>
 </body>
 </html>
